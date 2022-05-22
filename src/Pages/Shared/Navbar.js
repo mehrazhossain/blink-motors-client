@@ -23,7 +23,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-secondary">
+    <div className="navbar">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex="0" className="btn btn-ghost lg:hidden">
@@ -51,13 +51,13 @@ const Navbar = () => {
         </div>
         <Link
           to={'/'}
-          className="btn btn-ghost normal-case text-xl text-semibold text-neutral"
+          className="btn btn-ghost normal-case text-xl text-semibold"
         >
           Blink Motors
         </Link>
       </div>
       <div className="navbar-end hidden lg:flex">
-        <ul className="menu menu-horizontal p-0 text-neutral">{menuItems}</ul>
+        <ul className="menu menu-horizontal p-0 text-accent">{menuItems}</ul>
       </div>
     </div>
   );
