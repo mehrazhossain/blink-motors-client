@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Product = () => {
+const Product = ({ product }) => {
   return (
     <Link
       to="/purchase"
@@ -15,13 +15,13 @@ const Product = () => {
           alt="Shoes"
         />
       </figure>
-      <div class="card-body">
-        <h2 class="card-title">Shoes!</h2>
+      <div className="card-body">
+        <h2 className="card-title">Shoes!</h2>
         <p>If a dog chews shoes whose shoes does he choose?</p>
-        <div class="card-actions justify-center">
+        <div className="card-actions justify-center">
           <Link
             to="/purchase"
-            class="btn btn-ghost w-full text-primary text-xl"
+            className="btn btn-ghost w-full text-primary text-xl"
           >
             Buy Now
           </Link>

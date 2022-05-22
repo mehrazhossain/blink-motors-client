@@ -16,10 +16,8 @@ const BusinessSummary = () => {
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          className="feather feather-flag"
+          strokeWidth="2"
+          strokeLinecap="round"
         >
           <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path>
           <line x1="4" y1="22" x2="4" y2="15"></line>
@@ -39,10 +37,8 @@ const BusinessSummary = () => {
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          className="feather feather-check-square"
+          strokeWidth="2"
+          strokeLinecap="round"
         >
           <polyline points="9 11 12 14 22 4"></polyline>
           <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
@@ -62,10 +58,8 @@ const BusinessSummary = () => {
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          className="feather feather-users"
+          strokeWidth="2"
+          strokeLinecap="round"
         >
           <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
           <circle cx="9" cy="7" r="4"></circle>
@@ -86,7 +80,7 @@ const BusinessSummary = () => {
           viewBox="0 0 48 48"
           version="1"
           xmlns="http://www.w3.org/2000/svg"
-          enable-background="new 0 0 48 48"
+          enableBackground="new 0 0 48 48"
         >
           <path
             fill="#01a3a4"
@@ -120,7 +114,7 @@ const BusinessSummary = () => {
 
       <div className="card grid grid-cols-1 lg:grid-cols-4 gap-5 place-content-center">
         {statistics.map((info) => (
-          <div className="card-body">
+          <div key={info.id} className="card-body">
             <span className="text-primary">{info.icon}</span>
             <div className="stat-value">
               <CountUp
