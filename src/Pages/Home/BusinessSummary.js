@@ -103,6 +103,7 @@ const BusinessSummary = () => {
       ),
     },
   ];
+
   const onComplete = () => {
     return { shouldRepeat: true, delay: 2 };
   };
