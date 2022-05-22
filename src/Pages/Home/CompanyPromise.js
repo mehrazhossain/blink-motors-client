@@ -8,12 +8,12 @@ const CompanyPromise = () => {
     {
       id: 1,
       promiseTitle: 'DURABLE',
-      img: `${gear}`,
+      img: `${tier}`,
     },
     {
       id: 2,
       promiseTitle: 'LONG-LASTING',
-      img: `${tier}`,
+      img: `${gear}`,
     },
     {
       id: 2,
