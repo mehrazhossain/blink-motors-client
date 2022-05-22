@@ -7,11 +7,9 @@ function App() {
   return (
     <div className="max-w-7xl mx-auto">
       <Navbar></Navbar>
-      <div className="px-12">
-        <Routes>
-          <Route path="/" element={<Home />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
     </div>
   );
 }
