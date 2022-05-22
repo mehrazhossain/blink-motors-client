@@ -19,7 +19,7 @@ const BusinessSummary = () => {
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
-          class="feather feather-flag"
+          className="feather feather-flag"
         >
           <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path>
           <line x1="4" y1="22" x2="4" y2="15"></line>
@@ -42,7 +42,7 @@ const BusinessSummary = () => {
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
-          class="feather feather-check-square"
+          className="feather feather-check-square"
         >
           <polyline points="9 11 12 14 22 4"></polyline>
           <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
@@ -65,7 +65,7 @@ const BusinessSummary = () => {
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
-          class="feather feather-users"
+          className="feather feather-users"
         >
           <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
           <circle cx="9" cy="7" r="4"></circle>
@@ -114,14 +114,14 @@ const BusinessSummary = () => {
           MILLIONS BUSINESS TRUST US
         </h1>
         <p className="my-8 text-2xl">TRY TO UNDERSTAND USERS EXPECTATION</p>
-        <div class="mx-auto w-24 bg-primary p-0.5 bg-gradient-to-r from-primary to-purple-600"></div>
+        <div className="mx-auto w-24 bg-primary p-0.5 bg-gradient-to-r from-primary to-purple-600"></div>
       </div>
 
-      <div class="card grid grid-cols-1 lg:grid-cols-4 gap-5 place-content-center">
+      <div className="card grid grid-cols-1 lg:grid-cols-4 gap-5 place-content-center">
         {statistics.map((info) => (
-          <div class="card-body">
+          <div className="card-body">
             <span className="text-primary">{info.icon}</span>
-            <div class="stat-value">
+            <div className="stat-value">
               <CountUp
                 isCounting
                 end={info.statValue}
@@ -130,7 +130,7 @@ const BusinessSummary = () => {
               />
               +
             </div>
-            <div class="stat-title text-primary font-bold">
+            <div className="stat-title text-primary font-bold">
               {info.statTitle}
             </div>
           </div>
