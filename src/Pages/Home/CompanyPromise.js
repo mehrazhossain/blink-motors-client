@@ -21,6 +21,7 @@ const CompanyPromise = () => {
       img: `${helmet}`,
     },
   ];
+
   return (
     <div className="mx-12 mb-16">
       <div className="mb-8  text-center">
