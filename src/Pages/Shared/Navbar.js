@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
+import avatar from '../../assets/images/avatar.png';
 
 const Navbar = () => {
   const [user] = useAuthState(auth);
@@ -31,7 +32,31 @@ const Navbar = () => {
       </li>
       <li>
         <Link to={'/login'}>
-          {user ? <span onClick={handleLogout}>Logout</span> : 'Login'}
+          {user ? (
+            <div class="dropdown dropdown-end">
+              <label tabIndex="0" class="btn btn-ghost btn-circle avatar">
+                <div class="w-10 rounded-full">
+                  <img src={user.photoURL || avatar} alt="login user profile" />
+                </div>
+              </label>
+              <ul
+                tabIndex="0"
+                class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
+              >
+                <li className="cursor-pointer mx-auto py-2 hover:text-primary hover:font-semibold">
+                  {user.displayName}
+                </li>
+                <li
+                  onClick={handleLogout}
+                  className="cursor-pointer mx-auto py-2 hover:text-primary hover:font-semibold"
+                >
+                  Logout
+                </li>
+              </ul>
+            </div>
+          ) : (
+            'Login'
+          )}
         </Link>
       </li>
     </>
