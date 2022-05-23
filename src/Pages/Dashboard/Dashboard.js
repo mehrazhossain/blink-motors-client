@@ -1,12 +1,18 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, Outlet } from 'react-router-dom';
+import auth from '../../firebase.init';
 
 const Dashboard = () => {
+  const [user] = useAuthState(auth);
+
   return (
     <div class="drawer drawer-mobile">
       <input id="dashboard-sidebar" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content">
-        <h1 className="text-2xl text-indigo-700 font-extrabold">Dashboard</h1>
+        <h1 className="text-2xl text-indigo-700 text-center font-extrabold">
+          Dashboard of {user.displayName.split(' ')[0]}
+        </h1>
         <Outlet />
       </div>
       <div class="drawer-side">
