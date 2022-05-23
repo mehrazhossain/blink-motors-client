@@ -5,6 +5,7 @@ import BusinessSummary from './BusinessSummary';
 import CompanyPromise from './CompanyPromise';
 import NeedHelp from './NeedHelp';
 import Products from './Products';
+import Reviews from './Reviews';
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
       <Banner />
       <Products />
       <BusinessSummary />
+      <Reviews />
       <CompanyPromise />
       <NeedHelp />
       <Footer></Footer>
