@@ -15,8 +15,11 @@ const useToken = (user) => {
           'content-type': 'application/json',
         },
         data: currentUser,
-      }).then((data) => {
-        console.log('data inside useToken', data);
+      }).then((res) => {
+        // console.log('data inside useToken', data);
+        const accessToken = res.data.token;
+        localStorage.setItem('accessToken', accessToken);
+        setToken(accessToken);
       });
     }
   }, [user]);

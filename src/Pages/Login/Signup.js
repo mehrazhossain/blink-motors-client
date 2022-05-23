@@ -32,7 +32,7 @@ const Signup = () => {
 
   // handle Created User
   if (token) {
-    navigate('/');
+    navigate('/purchase');
   }
 
   // Handle Loading
