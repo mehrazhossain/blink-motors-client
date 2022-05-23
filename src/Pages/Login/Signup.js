@@ -10,12 +10,13 @@ import auth from '../../firebase.init';
 import { toast } from 'react-toastify';
 import Loader from '../Shared/Loader';
 
-const SignUp = () => {
+const Signup = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
   const [updateProfile, updateLoading, updateError] = useUpdateProfile(auth);
   const [signInWithGoogle, googleUser, googleLoading, googleError] =
     useSignInWithGoogle(auth);
+
   const navigate = useNavigate();
 
   // React Hook Form
@@ -26,14 +27,14 @@ const SignUp = () => {
     handleSubmit,
   } = useForm();
 
-  // Handle Loading
-  if (loading || updateLoading || googleLoading) {
-    return <Loader />;
-  }
-
   // handle Created User
   if (user || googleUser) {
     navigate('/');
+  }
+
+  // Handle Loading
+  if (loading || updateLoading || googleLoading) {
+    return <Loader />;
   }
 
   // Error Handling
@@ -212,4 +213,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default Signup;
