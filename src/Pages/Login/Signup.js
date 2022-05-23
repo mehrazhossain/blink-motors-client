@@ -9,6 +9,7 @@ import {
 import auth from '../../firebase.init';
 import { toast } from 'react-toastify';
 import Loader from '../Shared/Loader';
+import useToken from '../../hooks/useToken';
 
 const Signup = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
@@ -16,6 +17,8 @@ const Signup = () => {
   const [updateProfile, updateLoading, updateError] = useUpdateProfile(auth);
   const [signInWithGoogle, googleUser, googleLoading, googleError] =
     useSignInWithGoogle(auth);
+
+  const [token] = useToken(user || googleUser);
 
   const navigate = useNavigate();
 
@@ -28,7 +31,7 @@ const Signup = () => {
   } = useForm();
 
   // handle Created User
-  if (user || googleUser) {
+  if (token) {
     navigate('/');
   }
 
