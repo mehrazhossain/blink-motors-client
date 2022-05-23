@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   useCreateUserWithEmailAndPassword,
   useSignInWithGoogle,
@@ -8,12 +8,17 @@ import {
 } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { toast } from 'react-toastify';
+import Loader from '../Shared/Loader';
 
 const SignUp = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
-  const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+  const [updateProfile, updateLoading, updateError] = useUpdateProfile(auth);
+  const [signInWithGoogle, googleUser, googleLoading, googleError] =
+    useSignInWithGoogle(auth);
+  const navigate = useNavigate();
 
+  // React Hook Form
   const {
     register,
     reset,
@@ -21,16 +26,34 @@ const SignUp = () => {
     handleSubmit,
   } = useForm();
 
+  // Handle Loading
+  if (loading || updateLoading || googleLoading) {
+    return <Loader />;
+  }
+
+  // handle Created User
+  if (user || googleUser) {
+    navigate('/');
+  }
+
   // Error Handling
   let signInError;
-  if (error || updateError) {
+  if (error || updateError || googleError) {
     signInError = (
       <p className="text-rose-700 font-semibold mb-1">
-        <small>{error?.message || updateError?.message}</small>
+        <small>
+          {error?.message || updateError?.message || googleError?.message}
+        </small>
       </p>
     );
   }
 
+  // Handle Google Sign in
+  const handleGoogleSignIn = () => {
+    signInWithGoogle();
+  };
+
+  // React Hook Form Submit
   const onSubmit = async (data) => {
     await createUserWithEmailAndPassword(data.email, data.password);
     await updateProfile({ displayName: data.name });
@@ -155,7 +178,8 @@ const SignUp = () => {
           </p>
 
           <div className="divider">OR</div>
-          <button className="btn btn-ghost">
+          {signInError}
+          <button onClick={handleGoogleSignIn} className="btn btn-ghost">
             <svg
               width="24px"
               height="24px"
