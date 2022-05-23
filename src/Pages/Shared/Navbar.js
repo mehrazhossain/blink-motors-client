@@ -11,6 +11,7 @@ const Navbar = () => {
   // Handle User Logout
   const handleLogout = () => {
     signOut(auth);
+    localStorage.removeItem('accessToken');
   };
 
   const menuItems = (
