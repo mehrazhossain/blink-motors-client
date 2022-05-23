@@ -16,7 +16,7 @@ const CompanyPromise = () => {
       img: `${gear}`,
     },
     {
-      id: 2,
+      id: 3,
       promiseTitle: 'HIGH QUALITY',
       img: `${helmet}`,
     },
@@ -32,14 +32,14 @@ const CompanyPromise = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {promises.map((promise) => (
-          <div key={promise.id} class="card w-96 bg-base-1 shadow-xl">
+          <div key={promise.id} className="card w-96 bg-base-1 shadow-xl">
             <div
-              class="relative h-64 w-full flex items-end justify-start text-left bg-cover bg-center"
+              className="relative h-64 w-full flex items-end justify-start text-left bg-cover bg-center"
               style={{ backgroundImage: `url(${promise.img})` }}
             >
-              <div class="absolute top-0 mt-20 right-0 bottom-0 left-0 bg-gradient-to-b from-transparent to-gray-900">
-                <div class="card-body flex h-98">
-                  <div class="m-auto">
+              <div className="absolute top-0 mt-20 right-0 bottom-0 left-0 bg-gradient-to-b from-transparent to-gray-900">
+                <div className="card-body flex h-98">
+                  <div className="m-auto">
                     <h3 className="card-title text-3xl text-white text-semibold">
                       {promise.promiseTitle}
                     </h3>

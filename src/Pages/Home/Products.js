@@ -21,7 +21,7 @@ const Products = () => {
 
   return (
     <div className="mx-12 mb-16">
-      <div className="mb-8  text-center">
+      <div className="mb-8 text-center">
         <h1 className="text-3xl font-semibold m-4">PRODUCT RECOMMENDATION</h1>
         <div className="mx-auto w-24 bg-primary p-0.5 bg-gradient-to-r from-purple-600 to-primary"></div>
       </div>
