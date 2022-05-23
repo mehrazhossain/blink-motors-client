@@ -1,16 +1,43 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import {
+  useCreateUserWithEmailAndPassword,
+  useSignInWithGoogle,
+  useUpdateProfile,
+} from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
+import { toast } from 'react-toastify';
 
 const SignUp = () => {
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
+  const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+
   const {
     register,
+    reset,
     formState: { errors },
     handleSubmit,
   } = useForm();
 
-  const onSubmit = (event) => {
-    event.preventDefault();
+  // Error Handling
+  let signInError;
+  if (error || updateError) {
+    signInError = (
+      <p className="text-rose-700 font-semibold mb-1">
+        <small>{error?.message || updateError?.message}</small>
+      </p>
+    );
+  }
+
+  const onSubmit = async (data) => {
+    await createUserWithEmailAndPassword(data.email, data.password);
+    await updateProfile({ displayName: data.name });
+    reset();
+    if (!signInError) {
+      toast.success('User Created Successfully');
+    }
   };
 
   return (
@@ -111,6 +138,7 @@ const SignUp = () => {
                 )}
               </label>
             </div>
+            {signInError}
             <input
               className="btn btn-secondary w-full max-w-xs text-xl text-base-100"
               type="submit"
