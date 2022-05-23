@@ -30,35 +30,38 @@ const Navbar = () => {
       <li>
         <Link to={'/contact'}>Contact</Link>
       </li>
-      <li>
-        <Link to={'/login'}>
-          {user ? (
-            <div class="dropdown dropdown-end">
-              <label tabIndex="0" class="btn btn-ghost btn-circle avatar">
-                <div class="w-10 rounded-full">
-                  <img src={user.photoURL || avatar} alt="login user profile" />
-                </div>
-              </label>
-              <ul
-                tabIndex="0"
-                class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
-              >
-                <li className="cursor-pointer mx-auto py-2 hover:text-primary hover:font-semibold">
-                  {user.displayName}
-                </li>
-                <li
-                  onClick={handleLogout}
-                  className="cursor-pointer mx-auto py-2 hover:text-primary hover:font-semibold"
-                >
-                  Logout
-                </li>
-              </ul>
+      {user && (
+        <li>
+          <Link to={'/dashboard'}>Dashboard</Link>
+        </li>
+      )}
+      {user ? (
+        <div class="dropdown lg:dropdown-end dropdown-start">
+          <label tabIndex="0" class="btn btn-ghost btn-circle avatar">
+            <div class="w-10 rounded-full">
+              <img src={user.photoURL || avatar} alt="login user profile" />
             </div>
-          ) : (
-            'Login'
-          )}
-        </Link>
-      </li>
+          </label>
+          <ul
+            tabIndex="0"
+            class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-40"
+          >
+            <li className="cursor-pointer mx-auto p-1 hover:text-primary hover:font-semibold">
+              {user.displayName}
+            </li>
+            <li
+              onClick={handleLogout}
+              className="cursor-pointer mx-auto p-1 hover:text-primary hover:font-semibold"
+            >
+              Logout
+            </li>
+          </ul>
+        </div>
+      ) : (
+        <li>
+          <Link to={'/login'}>Login</Link>
+        </li>
+      )}
     </>
   );
 
@@ -69,7 +72,7 @@ const Navbar = () => {
           <label tabIndex="0" className="btn btn-ghost lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 text-neutral"
+              className="h-5 w-5 text-accent"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -98,6 +101,28 @@ const Navbar = () => {
       </div>
       <div className="navbar-end hidden lg:flex">
         <ul className="menu menu-horizontal p-0 text-accent">{menuItems}</ul>
+      </div>
+      <div>
+        <label
+          tabIndex="1"
+          for="dashboard-sidebar"
+          className="btn btn-ghost lg:hidden"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M4 6h16M4 12h8m-8 6h16"
+            />
+          </svg>
+        </label>
       </div>
     </div>
   );
