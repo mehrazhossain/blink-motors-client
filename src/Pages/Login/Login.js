@@ -1,16 +1,54 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import {
+  useSignInWithGoogle,
+  useSignInWithEmailAndPassword,
+} from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
+import Loader from '../Shared/Loader';
 
 const Login = () => {
+  const [signInWithGoogle, googleUser, googleLoading, googleError] =
+    useSignInWithGoogle(auth);
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+  const navigate = useNavigate();
+
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
 
-  const onSubmit = (e) => {
-    e.preventDefault();
+  // handle logged in User
+  if (user || googleUser) {
+    navigate('/');
+  }
+
+  // Handle Loading
+  if (loading || googleLoading) {
+    return <Loader />;
+  }
+
+  // Error Handling
+  let signInError;
+  if (error || googleError) {
+    signInError = (
+      <p className="text-rose-700 font-semibold mb-1">
+        <small>{error?.message || googleError?.message}</small>
+      </p>
+    );
+  }
+
+  // Handle continue with google button
+  const handleContinueWithGoogleBtn = () => {
+    signInWithGoogle();
+  };
+
+  // React Hook Form Submit Handle
+  const onSubmit = (data) => {
+    signInWithEmailAndPassword(data.email, data.password);
   };
 
   return (
@@ -28,6 +66,7 @@ const Login = () => {
               <input
                 type="email"
                 placeholder="Your email"
+                autoComplete="off"
                 className="input input-bordered w-full max-w-xs"
                 {...register('email', {
                   required: {
@@ -85,6 +124,7 @@ const Login = () => {
                 )}
               </label>
             </div>
+            {error && signInError}
             <input
               className="btn btn-secondary w-full max-w-xs text-xl text-base-100"
               type="submit"
@@ -101,7 +141,11 @@ const Login = () => {
           </p>
 
           <div className="divider">OR</div>
-          <button className="btn btn-ghost">
+          {googleError && signInError}
+          <button
+            onClick={handleContinueWithGoogleBtn}
+            className="btn btn-ghost"
+          >
             <svg
               width="24px"
               height="24px"

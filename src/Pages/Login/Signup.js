@@ -161,7 +161,7 @@ const SignUp = () => {
                 )}
               </label>
             </div>
-            {signInError}
+            {error && updateError && signInError}
             <input
               className="btn btn-secondary w-full max-w-xs text-xl text-base-100"
               type="submit"
@@ -178,7 +178,7 @@ const SignUp = () => {
           </p>
 
           <div className="divider">OR</div>
-          {signInError}
+          {googleError && signInError}
           <button onClick={handleGoogleSignIn} className="btn btn-ghost">
             <svg
               width="24px"
