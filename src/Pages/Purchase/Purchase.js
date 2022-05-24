@@ -6,12 +6,13 @@ import { Link, useParams } from 'react-router-dom';
 import auth from '../../firebase.init';
 import { request } from '../../utils/axios-utils';
 import Loader from '../Shared/Loader';
+import { toast } from 'react-toastify';
 
 const Purchase = () => {
   const [user, loading] = useAuthState(auth);
   const { id } = useParams();
   const [input, setInput] = useState('');
-  const [orderQuantity, setOrderQuantity] = useState('');
+  const [orderQuantity, setOrderQuantity] = useState(0);
 
   const {
     register,
@@ -43,7 +44,23 @@ const Purchase = () => {
   };
 
   // handle React Hook Order Form
-  const onSubmit = async (data) => {};
+  const onSubmit = async (data) => {
+    const order = {
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
+      orderedQuantity: data.orderedQuantity,
+      payableAmount: data.payableAmount,
+      address: data.address,
+      status: 'pending',
+    };
+
+    // send to database
+    request({ url: '/order', method: 'post', data: { order } }).then((res) => {
+      toast.success('Order Completed');
+      reset();
+    });
+  };
 
   return (
     <section className="mx-12">
@@ -328,59 +345,6 @@ const Purchase = () => {
                     )}
                   </label>
                 </div>
-
-                <fieldset class="col-span-6">
-                  <legend class="block mb-1 text-sm text-gray-600">
-                    Card Details
-                  </legend>
-
-                  <div class="-space-y-px bg-white rounded-lg shadow-sm">
-                    <div>
-                      <label class="sr-only" for="card-number">
-                        Card Number
-                      </label>
-
-                      <input
-                        class="border-gray-200 relative rounded-t-lg w-full focus:z-10 text-sm p-2.5 placeholder-gray-400"
-                        type="text"
-                        name="card-number"
-                        id="card-number"
-                        placeholder="Card number"
-                      />
-                    </div>
-
-                    <div class="flex -space-x-px">
-                      <div class="flex-1">
-                        <label class="sr-only" for="card-expiration-date">
-                          Expiration Date
-                        </label>
-
-                        <input
-                          class="border-gray-200 relative rounded-bl-lg w-full focus:z-10 text-sm p-2.5 placeholder-gray-400"
-                          type="text"
-                          name="card-expiration-date"
-                          id="card-expiration-date"
-                          placeholder="MM / YY"
-                        />
-                      </div>
-
-                      <div class="flex-1">
-                        <label class="sr-only" for="card-cvc">
-                          CVC
-                        </label>
-
-                        <input
-                          class="border-gray-200 relative rounded-br-lg w-full focus:z-10 text-sm p-2.5 placeholder-gray-400"
-                          type="text"
-                          name="card-cvc"
-                          id="card-cvc"
-                          placeholder="CVC"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </fieldset>
-
                 <fieldset class="col-span-6">
                   <legend class="block mb-1 text-sm text-gray-600">
                     Billing Address
