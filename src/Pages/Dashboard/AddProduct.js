@@ -132,7 +132,7 @@ const AddProduct = () => {
                 message: 'Available quantity is required',
               },
             })}
-            className="select input-bordered w-full max-w-xs"
+            class="select input-bordered w-full max-w-xs"
           />
           <label className="label">
             {errors.stock?.type === 'required' && (
@@ -156,7 +156,7 @@ const AddProduct = () => {
                 message: 'Minimum order quantity is required',
               },
             })}
-            className="select input-bordered w-full max-w-xs"
+            class="select input-bordered w-full max-w-xs"
           />
           <label className="label">
             {errors.minOrderQty?.type === 'required' && (
