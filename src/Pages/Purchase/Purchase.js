@@ -9,6 +9,10 @@ import Loader from '../Shared/Loader';
 
 const Purchase = () => {
   const [user, loading] = useAuthState(auth);
+  const { id } = useParams();
+  const [input, setInput] = useState('');
+  const [orderQuantity, setOrderQuantity] = useState('');
+
   const {
     register,
     formState: { errors },
@@ -16,25 +20,30 @@ const Purchase = () => {
     reset,
   } = useForm();
 
-  const [input, setInput] = useState('');
-
-  const { id } = useParams();
-
   const { data: product, isLoading } = useQuery('product', () =>
     request({ url: `/product/${id}` }).then((res) => res.data.product)
   );
 
+  // handle Loading
   if (isLoading) {
     return <Loader />;
   }
 
-  const onSubmit = async (data) => {};
-
+  //  handle input
   const handleInput = (e) => {
     const inputValue = e.target.value;
     const inputNumber = parseInt(inputValue);
     setInput(inputNumber);
   };
+
+  // handle Order Form
+  const handleOrderForm = (e) => {
+    e.preventDefault();
+    setOrderQuantity(input);
+  };
+
+  // handle React Hook Order Form
+  const onSubmit = async (data) => {};
 
   return (
     <section className="mx-12">
@@ -87,25 +96,21 @@ const Purchase = () => {
               </div>
 
               <div class="mt-8">
-                <h1 class="text-5xl font-medium text-primary tracking-tight my-4">
+                <h1 class="text-2xl font-medium tracking-tight my-4">
                   Product Information
                 </h1>
-                <p className="text-xl font-medium tracking-tight mb-2">
+                <p className="font-medium tracking-tight mb-2">
                   Unit Price: {product.price}$
                 </p>
                 <p>
-                  <span className="text-success font-semibold">
-                    Available Stock
-                  </span>
-                  : {product.stock} {product.stock > 0 ? 'Pieces' : 'Piece'}{' '}
+                  <span className="text-green-700">Available Stock</span>:{' '}
+                  {product.stock} {product.stock > 0 ? 'Pieces' : 'Piece'}{' '}
                 </p>
-                <p class="mt-1 text-sm text-gray-500">
-                  <span className="text-error">
-                    Minimum order quantity for this product
-                  </span>
-                  : {product.minOrderQty}{' '}
+                <small>
+                  <span className="text-rose-700">Minimum order limit</span>:{' '}
+                  {product.minOrderQty}{' '}
                   {product.minOrderQty > 0 ? 'Pieces' : 'Piece'}
-                </p>
+                </small>
               </div>
 
               <div class="mt-12">
@@ -124,21 +129,27 @@ const Purchase = () => {
 
                           <dl class="mt-1 space-y-1 text-xs text-gray-500">
                             <div>
-                              <dt class="inline">Order Quantity:</dt>
+                              <dt class="inline">Order Quantity: {input}</dt>
                               <dd class="inline">
-                                <form class="grid grid-cols-6 gap-4">
+                                {/* Order Form  */}
+                                <form
+                                  onSubmit={handleOrderForm}
+                                  class="grid grid-cols-6 gap-4"
+                                >
                                   <div class="col-span-3">
                                     <input
                                       class="rounded-lg mt-2 shadow-sm border w-full text-sm p-2"
                                       placeholder="Add order quantity"
                                       onInput={handleInput}
+                                      name="orderQuantity"
                                       type="number"
                                     />
                                     <button
-                                      class="w-full mt-2 btn btn-success btn-sm block mb-1 text-sm text-gray-800"
+                                      class="w-full mt-2 btn bg-black btn-sm block mb-1 text-sm text-white hover:bg-black"
                                       for="order_quantity"
                                       disabled={
-                                        input <= 0 || input > product.stock
+                                        input < product.minOrderQty ||
+                                        input > product.stock
                                       }
                                     >
                                       Add
@@ -147,19 +158,14 @@ const Purchase = () => {
                                 </form>
                               </dd>
                             </div>
-
-                            <div>
-                              <dt class="inline">Size:</dt>
-                              <dd class="inline">UK 10</dd>
-                            </div>
                           </dl>
                         </div>
                       </div>
 
                       <div>
-                        {input >= 1 && (
-                          <p class="btn btn-xs">${input * product.price}</p>
-                        )}
+                        <p class="btn btn-sm hover:bg-white">
+                          ${input * product.price}
+                        </p>
                       </div>
                     </li>
                   </ul>
@@ -170,10 +176,69 @@ const Purchase = () => {
 
           <div class="py-12 bg-white md:py-24">
             <div class="max-w-lg px-4 mx-auto lg:px-8">
+              {/* React Hook Place Order Form */}
               <form
                 onSubmit={handleSubmit(onSubmit)}
                 class="grid grid-cols-6 gap-4"
               >
+                <div class="col-span-3">
+                  <label
+                    class="block mb-1 text-sm text-gray-600"
+                    for="first_name"
+                  >
+                    Ordered Quantity
+                  </label>
+
+                  <input
+                    class="rounded-lg shadow-sm border w-full text-sm p-2.5"
+                    type="text"
+                    value={orderQuantity}
+                    readOnly
+                    {...register('orderedQty', {
+                      required: {
+                        value: true,
+                        message: 'Ordered Quantity is required',
+                      },
+                    })}
+                  />
+                  <label className="label">
+                    {errors.orderedQty?.type === 'required' && (
+                      <span className="label-text-alt text-red-500">
+                        {errors.orderedQty.message}
+                      </span>
+                    )}
+                  </label>
+                </div>
+
+                <div class="col-span-3">
+                  <label
+                    class="block mb-1 text-sm text-gray-600"
+                    for="last_name"
+                  >
+                    Payable Amount $
+                  </label>
+
+                  <input
+                    class="rounded-lg shadow-sm border w-full text-sm p-2.5"
+                    type="text"
+                    value={orderQuantity * product.price}
+                    readOnly
+                    {...register('payableAmount', {
+                      required: {
+                        value: true,
+                        message: 'Payable Amount is required',
+                      },
+                    })}
+                  />
+                  <label className="label">
+                    {errors.payableAmount?.type === 'required' && (
+                      <span className="label-text-alt text-red-500">
+                        {errors.payableAmount.message}
+                      </span>
+                    )}
+                  </label>
+                </div>
+
                 <div class="col-span-6">
                   <label class="block mb-1 text-sm text-gray-600" for="email">
                     Your Name
@@ -181,11 +246,24 @@ const Purchase = () => {
 
                   <input
                     class="rounded-lg shadow-sm border w-full text-sm p-2.5"
-                    type="email"
+                    type="text"
                     placeholder="Your name"
                     autoComplete="off"
-                    id="text"
+                    value={user.displayName}
+                    {...register('name', {
+                      required: {
+                        value: true,
+                        message: 'Name is required',
+                      },
+                    })}
                   />
+                  <label className="label">
+                    {errors.name?.type === 'required' && (
+                      <span className="label-text-alt text-red-500">
+                        {errors.name.message}
+                      </span>
+                    )}
+                  </label>
                 </div>
 
                 <div class="col-span-6">
@@ -198,8 +276,22 @@ const Purchase = () => {
                     type="email"
                     placeholder="Enter email"
                     autoComplete="off"
-                    id="email"
+                    value={user.email}
+                    readOnly
+                    {...register('email', {
+                      required: {
+                        value: true,
+                        message: 'Email is required',
+                      },
+                    })}
                   />
+                  <label className="label">
+                    {errors.email?.type === 'required' && (
+                      <span className="label-text-alt text-red-500">
+                        {errors.email.message}
+                      </span>
+                    )}
+                  </label>
                 </div>
 
                 <div class="col-span-6">
@@ -212,7 +304,29 @@ const Purchase = () => {
                     type="tel"
                     placeholder="Provide a valid phone number"
                     id="phone"
+                    {...register('phone', {
+                      required: {
+                        value: true,
+                        message: 'Phone number is required',
+                      },
+                      pattern: {
+                        value: /(^(\+88|0088)?(01){1}[3456789]{1}(\d){8})$/,
+                        message: 'Please provide a valid phone number',
+                      },
+                    })}
                   />
+                  <label className="label">
+                    {errors.phone?.type === 'required' && (
+                      <span className="label-text-alt text-red-500">
+                        {errors.phone.message}
+                      </span>
+                    )}
+                    {errors.phone?.type === 'pattern' && (
+                      <span className="label-text-alt text-red-500">
+                        {errors.phone.message}
+                      </span>
+                    )}
+                  </label>
                 </div>
 
                 <fieldset class="col-span-6">
@@ -275,8 +389,20 @@ const Purchase = () => {
                     class="rounded-lg shadow-sm border w-full text-sm p-2.5"
                     type="text"
                     placeholder="Your address"
-                    id="address"
+                    {...register('address', {
+                      required: {
+                        value: true,
+                        message: 'Product title is required',
+                      },
+                    })}
                   />
+                  <label className="label">
+                    {errors.address?.type === 'required' && (
+                      <span className="label-text-alt text-red-500">
+                        {errors.address.message}
+                      </span>
+                    )}
+                  </label>
                 </fieldset>
 
                 <div class="col-span-6">
