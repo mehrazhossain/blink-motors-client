@@ -56,10 +56,14 @@ const Purchase = () => {
     };
 
     // send to database
-    request({ url: '/order', method: 'post', data: { order } }).then((res) => {
-      toast.success('Order Completed');
-      reset();
-    });
+    if (orderQuantity !== 0) {
+      request({ url: '/order', method: 'post', data: { order } }).then(
+        (res) => {
+          toast.success('Order Successfully submitted');
+          reset();
+        }
+      );
+    }
   };
 
   return (
