@@ -5,12 +5,8 @@ import Product from './Product';
 import { request } from '../../utils/axios-utils';
 
 const Products = () => {
-  const {
-    data: products,
-    isLoading,
-    error,
-  } = useQuery('products', () =>
-    request({ url: '/product' }).then((res) => res.data)
+  const { data: products, isLoading } = useQuery('products', () =>
+    request({ url: '/product', method: 'get' }).then((res) => res.data)
   );
 
   if (isLoading) {

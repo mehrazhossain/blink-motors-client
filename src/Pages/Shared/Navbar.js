@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
-import avatar from '../../assets/images/avatar.png';
+import avatar from '../../assets/images/default avatar.png';
 
 const Navbar = () => {
   const [user] = useAuthState(auth);
