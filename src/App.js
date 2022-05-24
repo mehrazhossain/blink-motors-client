@@ -14,6 +14,7 @@ import MyOrders from './Pages/Dashboard/MyOrders';
 import MyProfile from './Pages/Dashboard/MyProfile';
 import AddReview from './Pages/Dashboard/AddReview';
 import ManageUsers from './Pages/Dashboard/ManageUsers';
+import RequireAdmin from './Pages/Login/RequireAdmin';
 
 function App() {
   return (
@@ -44,7 +45,11 @@ function App() {
           <Route path="/dashboard/add-review" element={<AddReview />}></Route>
           <Route
             path="/dashboard/manage-users"
-            element={<ManageUsers />}
+            element={
+              <RequireAdmin>
+                <ManageUsers />
+              </RequireAdmin>
+            }
           ></Route>
         </Route>
         <Route path="*" element={<NotFound />} />
