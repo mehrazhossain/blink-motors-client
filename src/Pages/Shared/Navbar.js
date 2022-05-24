@@ -20,9 +20,6 @@ const Navbar = () => {
         <Link to={'/'}>Home</Link>
       </li>
       <li>
-        <Link to={'/purchase'}>Purchase</Link>
-      </li>
-      <li>
         <Link to={'/portfolio'}>Portfolio</Link>
       </li>
       <li>
@@ -37,15 +34,15 @@ const Navbar = () => {
         </li>
       )}
       {user ? (
-        <div class="dropdown lg:dropdown-end dropdown-start">
-          <label tabIndex="0" class="btn btn-ghost btn-circle avatar">
-            <div class="w-10 rounded-full">
+        <div className="dropdown lg:dropdown-end dropdown-start">
+          <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
+            <div className="w-10 rounded-full">
               <img src={user.photoURL || avatar} alt="login user profile" />
             </div>
           </label>
           <ul
             tabIndex="0"
-            class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-40"
+            className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-40"
           >
             <li className="cursor-pointer mx-auto p-1 hover:text-primary hover:font-semibold">
               {user.displayName}
@@ -106,7 +103,7 @@ const Navbar = () => {
       <div>
         <label
           tabIndex="1"
-          for="dashboard-sidebar"
+          htmlFor="dashboard-sidebar"
           className="btn btn-ghost lg:hidden"
         >
           <svg

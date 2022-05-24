@@ -1,8 +1,8 @@
 import React from 'react';
 import { useQuery } from 'react-query';
-import axios from 'axios';
 import Loader from '../Shared/Loader';
 import Product from './Product';
+import { request } from '../../utils/axios-utils';
 
 const Products = () => {
   const {
@@ -10,9 +10,7 @@ const Products = () => {
     isLoading,
     error,
   } = useQuery('products', () =>
-    axios
-      .get('https://jsonplaceholder.typicode.com/photos')
-      .then((res) => res.data)
+    request({ url: '/product' }).then((res) => res.data)
   );
 
   if (isLoading) {
@@ -27,7 +25,7 @@ const Products = () => {
       </div>
       <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mx-12">
         {products.slice(0, 6).map((product) => (
-          <Product key={product.id} product={product} />
+          <Product key={product._id} product={product} />
         ))}
       </div>
     </div>

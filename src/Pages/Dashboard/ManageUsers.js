@@ -33,8 +33,8 @@ const ManageUsers = () => {
   return (
     <div>
       <h2>All Users: {users.length}</h2>
-      <div class="overflow-x-auto">
-        <table class="table w-full">
+      <div className="overflow-x-auto">
+        <table className="table w-full">
           <thead>
             <tr>
               <th></th>
@@ -54,14 +54,14 @@ const ManageUsers = () => {
                   ) : (
                     <button
                       onClick={() => makeAdmin(user.email)}
-                      class="btn btn-xs"
+                      className="btn btn-xs"
                     >
                       Make Admin
                     </button>
                   )}
                 </td>
                 <td>
-                  <button class="btn btn-xs btn-error">Remove</button>
+                  <button className="btn btn-xs btn-error">Remove</button>
                 </td>
               </tr>
             ))}
