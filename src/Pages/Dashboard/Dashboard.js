@@ -13,7 +13,7 @@ const Dashboard = () => {
       <input id="dashboard-sidebar" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
         {admin ? (
-          <h1 className="text-2xl text-indigo-700 text-center font-extrabold">
+          <h1 className="text-2xl text-indigo-700 text-center font-extrabold my-5">
             Admin Dashboard
           </h1>
         ) : (
@@ -42,12 +42,22 @@ const Dashboard = () => {
           )}
           {admin && (
             <li>
-              <Link to={'/dashboard/manage-users'}>Manage Users</Link>
+              <Link to={'/dashboard/add-product'}>Add Product</Link>
             </li>
           )}
           {admin && (
             <li>
-              <Link to={'/dashboard/add-product'}>Add Product</Link>
+              <Link to={'/dashboard/manage-orders'}>Manage All Orders</Link>
+            </li>
+          )}
+          {admin && (
+            <li>
+              <Link to={'/dashboard/manage-products'}>Manage Products</Link>
+            </li>
+          )}
+          {admin && (
+            <li>
+              <Link to={'/dashboard/manage-users'}>Manage Users</Link>
             </li>
           )}
         </ul>

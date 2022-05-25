@@ -16,6 +16,8 @@ import AddReview from './Pages/Dashboard/AddReview';
 import ManageUsers from './Pages/Dashboard/ManageUsers';
 import RequireAdmin from './Pages/Login/RequireAdmin';
 import AddProduct from './Pages/Dashboard/AddProduct';
+import ManageProducts from './Pages/Dashboard/ManageProducts';
+import ManageOrders from './Pages/Dashboard/ManageOrders';
 
 function App() {
   return (
@@ -49,6 +51,22 @@ function App() {
             element={
               <RequireAdmin>
                 <ManageUsers />
+              </RequireAdmin>
+            }
+          ></Route>
+          <Route
+            path="/dashboard/manage-products"
+            element={
+              <RequireAdmin>
+                <ManageProducts />
+              </RequireAdmin>
+            }
+          ></Route>
+          <Route
+            path="/dashboard/manage-orders"
+            element={
+              <RequireAdmin>
+                <ManageOrders />
               </RequireAdmin>
             }
           ></Route>

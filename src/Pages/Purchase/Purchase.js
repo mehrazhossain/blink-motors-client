@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { useQuery } from 'react-query';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import auth from '../../firebase.init';
 import { request } from '../../utils/axios-utils';
 import Loader from '../Shared/Loader';
@@ -12,7 +12,7 @@ const Purchase = () => {
   const [user, loading] = useAuthState(auth);
   const { id } = useParams();
   const [input, setInput] = useState('');
-  const [orderQuantity, setOrderQuantity] = useState(0);
+  const navigate = useNavigate();
 
   const {
     register,
@@ -26,7 +26,7 @@ const Purchase = () => {
   );
 
   // handle Loading
-  if (isLoading) {
+  if (isLoading || loading) {
     return <Loader />;
   }
 
@@ -40,23 +40,27 @@ const Purchase = () => {
   // handle Order Form
   const handleOrderForm = (e) => {
     e.preventDefault();
-    setOrderQuantity(input);
   };
 
   // handle React Hook Order Form
   const onSubmit = async (data) => {
+    const amount = input * product.price;
     const order = {
       name: data.name,
       email: data.email,
       phone: data.phone,
-      orderedQuantity: data.orderedQuantity,
-      payableAmount: data.payableAmount,
+      orderQuantity: input,
+      payableAmount: amount,
       address: data.address,
       status: 'pending',
+      paymentStatus: 'unpaid',
+      product: product,
     };
 
+    console.log(order);
+
     // send to database
-    if (orderQuantity !== 0) {
+    if (input !== 0) {
       request({ url: '/order', method: 'post', data: { order } }).then(
         (res) => {
           toast.success('Order Successfully submitted');
@@ -64,6 +68,7 @@ const Purchase = () => {
         }
       );
     }
+    navigate('/');
   };
 
   return (
@@ -165,16 +170,6 @@ const Purchase = () => {
                                       name="orderQuantity"
                                       type="number"
                                     />
-                                    <button
-                                      class="w-full mt-2 btn bg-black btn-sm block mb-1 text-sm text-white hover:bg-black"
-                                      for="order_quantity"
-                                      disabled={
-                                        input < product.minOrderQty ||
-                                        input > product.stock
-                                      }
-                                    >
-                                      Add
-                                    </button>
                                   </div>
                                 </form>
                               </dd>
@@ -202,64 +197,6 @@ const Purchase = () => {
                 onSubmit={handleSubmit(onSubmit)}
                 class="grid grid-cols-6 gap-4"
               >
-                <div class="col-span-3">
-                  <label
-                    class="block mb-1 text-sm text-gray-600"
-                    for="first_name"
-                  >
-                    Ordered Quantity
-                  </label>
-
-                  <input
-                    class="rounded-lg shadow-sm border w-full text-sm p-2.5"
-                    type="text"
-                    value={orderQuantity}
-                    readOnly
-                    {...register('orderedQty', {
-                      required: {
-                        value: true,
-                        message: 'Ordered Quantity is required',
-                      },
-                    })}
-                  />
-                  <label className="label">
-                    {errors.orderedQty?.type === 'required' && (
-                      <span className="label-text-alt text-red-500">
-                        {errors.orderedQty.message}
-                      </span>
-                    )}
-                  </label>
-                </div>
-
-                <div class="col-span-3">
-                  <label
-                    class="block mb-1 text-sm text-gray-600"
-                    for="last_name"
-                  >
-                    Payable Amount $
-                  </label>
-
-                  <input
-                    class="rounded-lg shadow-sm border w-full text-sm p-2.5"
-                    type="text"
-                    value={orderQuantity * product.price}
-                    readOnly
-                    {...register('payableAmount', {
-                      required: {
-                        value: true,
-                        message: 'Payable Amount is required',
-                      },
-                    })}
-                  />
-                  <label className="label">
-                    {errors.payableAmount?.type === 'required' && (
-                      <span className="label-text-alt text-red-500">
-                        {errors.payableAmount.message}
-                      </span>
-                    )}
-                  </label>
-                </div>
-
                 <div class="col-span-6">
                   <label class="block mb-1 text-sm text-gray-600" for="email">
                     Your Name
@@ -374,12 +311,14 @@ const Purchase = () => {
                 </fieldset>
 
                 <div class="col-span-6">
-                  <button
-                    class="rounded-lg bg-black text-sm p-2.5 text-white w-full block"
-                    type="submit"
-                  >
-                    Order Now
-                  </button>
+                  {input < product.minOrderQty || input > product.stock || (
+                    <button
+                      class="rounded-lg bg-black text-sm p-2.5 text-white w-full block"
+                      type="submit"
+                    >
+                      Order Now
+                    </button>
+                  )}
                 </div>
               </form>
             </div>
