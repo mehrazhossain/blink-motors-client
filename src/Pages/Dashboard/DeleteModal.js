@@ -12,23 +12,23 @@ const DeleteModal = ({ refetch, orderId }) => {
 
   return (
     <div>
-      <input type="checkbox" id="delete-modal" class="modal-toggle" />
-      <div class="modal modal-bottom sm:modal-middle">
-        <div class="modal-box">
-          <h3 class="font-bold text-lg">
+      <input type="checkbox" id="delete-modal" className="modal-toggle" />
+      <div className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box">
+          <h3 className="font-bold text-lg">
             Are sure! you want to delete this order?
           </h3>
-          <div class="modal-action">
+          <div className="modal-action">
             <label
               onClick={handleDelete}
-              for="delete-modal"
-              class="btn bg-error hover:bg-error text-gray-800 mr-4 px-8"
+              htmlFor="delete-modal"
+              className="btn bg-error hover:bg-error text-gray-800 mr-4 px-8"
             >
               Yes
             </label>
             <label
-              for="delete-modal"
-              class="btn bg-success hover:bg-success text-gray-800 mr-4 px-8"
+              htmlFor="delete-modal"
+              className="btn bg-success hover:bg-success text-gray-800 mr-4 px-8"
             >
               Cancel
             </label>

@@ -19,6 +19,8 @@ import AddProduct from './Pages/Dashboard/AddProduct';
 import ManageProducts from './Pages/Dashboard/ManageProducts';
 import ManageOrders from './Pages/Dashboard/ManageOrders';
 import AddBlog from './Pages/Dashboard/AddBlog';
+import BlogDetail from './Pages/Blog/BlogDetail';
+import Blogs from './Pages/Blog/Blogs';
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
       <Navbar></Navbar>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/blog" element={<Blogs />} />
+        <Route path="/blog/detail/:id" element={<BlogDetail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route

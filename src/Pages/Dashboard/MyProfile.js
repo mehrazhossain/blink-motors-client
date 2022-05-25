@@ -44,10 +44,10 @@ const MyProfile = () => {
 
   return (
     <div className="flex flex-col lg:flex-row">
-      <div class="card lg:flex-1">
-        <div class="card-body">
-          <div class="avatar">
-            <div class="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+      <div className="card lg:flex-1">
+        <div className="card-body">
+          <div className="avatar">
+            <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
               {user.photoURL ? (
                 <img src={user.photoURL} alt="" />
               ) : (
@@ -55,17 +55,17 @@ const MyProfile = () => {
               )}
             </div>
           </div>
-          <h2 class="card-title">{user.displayName}</h2>
+          <h2 className="card-title">{user.displayName}</h2>
           <p>{user.email}</p>
-          <div class="form-control w-full max-w-xs">
+          <div className="form-control w-full max-w-xs">
             <form onSubmit={handleSubmit(onSubmit)}>
-              <label class="label">
-                <span class="label-text">What is your location?</span>
+              <label className="label">
+                <span className="label-text">What is your location?</span>
               </label>
               <input
                 type="text"
                 placeholder="city/district"
-                class="input input-bordered w-full max-w-xs"
+                className="input input-bordered w-full max-w-xs"
                 name="location"
                 autoComplete="off"
                 {...register('location', {
@@ -82,13 +82,13 @@ const MyProfile = () => {
                   </span>
                 )}
               </label>
-              <label class="label">
-                <span class="label-text">Education</span>
+              <label className="label">
+                <span className="label-text">Education</span>
               </label>
               <input
                 type="text"
                 placeholder="Enter your educational information"
-                class="input input-bordered w-full max-w-xs"
+                className="input input-bordered w-full max-w-xs"
                 name="education"
                 {...register('education', {
                   required: {
@@ -104,13 +104,13 @@ const MyProfile = () => {
                   </span>
                 )}
               </label>
-              <label class="label">
-                <span class="label-text">Phone</span>
+              <label className="label">
+                <span className="label-text">Phone</span>
               </label>
               <input
                 type="number"
                 placeholder="Type your phone number"
-                class="input input-bordered w-full max-w-xs"
+                className="input input-bordered w-full max-w-xs"
                 name="phone"
                 {...register('phone', {
                   required: {
@@ -135,13 +135,13 @@ const MyProfile = () => {
                   </span>
                 )}
               </label>
-              <label class="label">
-                <span class="label-text">Linkedin Profile</span>
+              <label className="label">
+                <span className="label-text">Linkedin Profile</span>
               </label>
               <input
                 type="text"
                 placeholder="Your linkedin profile url"
-                class="input input-bordered w-full max-w-xs"
+                className="input input-bordered w-full max-w-xs"
                 name="linkedin"
                 {...register('linkedin', {
                   required: {

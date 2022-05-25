@@ -44,15 +44,18 @@ const AddReview = () => {
         <span className="font-semibold">Blink Motors</span>
       </h2>
       <form className="border m-8 " onSubmit={handleSubmit(onSubmit)}>
-        <div class="card w-96 bg-base-100 shadow-xl">
-          <div class="card-body">
-            <div class="col-span-6">
-              <label class="block mb-1 text-sm text-gray-600" for="email">
+        <div className="card w-96 bg-base-100 shadow-xl">
+          <div className="card-body">
+            <div className="col-span-6">
+              <label
+                className="block mb-1 text-sm text-gray-600"
+                htmlFor="email"
+              >
                 Your Name
               </label>
 
               <input
-                class="rounded-lg shadow-sm border w-full text-sm p-2.5"
+                className="rounded-lg shadow-sm border w-full text-sm p-2.5"
                 type="text"
                 placeholder="Your name"
                 autoComplete="off"
@@ -72,13 +75,16 @@ const AddReview = () => {
                 )}
               </label>
             </div>
-            <div class="col-span-6">
-              <label class="block mb-1 text-sm text-gray-600" for="email">
+            <div className="col-span-6">
+              <label
+                className="block mb-1 text-sm text-gray-600"
+                htmlFor="email"
+              >
                 Your Profession
               </label>
 
               <input
-                class="rounded-lg shadow-sm border w-full text-sm p-2.5"
+                className="rounded-lg shadow-sm border w-full text-sm p-2.5"
                 type="text"
                 placeholder="Type here your profession"
                 autoComplete="off"
@@ -97,13 +103,16 @@ const AddReview = () => {
                 )}
               </label>
             </div>
-            <div class="col-span-6">
-              <label class="block mb-1 text-sm text-gray-600" for="email">
+            <div className="col-span-6">
+              <label
+                className="block mb-1 text-sm text-gray-600"
+                htmlFor="email"
+              >
                 Ratings
               </label>
 
               <input
-                class="rounded-lg shadow-sm border w-full text-sm p-2.5"
+                className="rounded-lg shadow-sm border w-full text-sm p-2.5"
                 type="text"
                 placeholder="Enter ratings"
                 autoComplete="off"
@@ -131,12 +140,15 @@ const AddReview = () => {
                 )}
               </label>
             </div>
-            <div class="col-span-6">
-              <label class="block mb-1 text-sm text-gray-600" for="email">
+            <div className="col-span-6">
+              <label
+                className="block mb-1 text-sm text-gray-600"
+                htmlFor="email"
+              >
                 Review with Description
               </label>
               <textarea
-                class="textarea w-full"
+                className="textarea w-full"
                 type="text"
                 placeholder="Write your review"
                 autoComplete="off"

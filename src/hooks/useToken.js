@@ -10,7 +10,7 @@ const useToken = (user) => {
     if (email) {
       axios({
         method: 'PUT',
-        url: `http://localhost:5000/user/${email}`,
+        url: `https://blinkmotors.herokuapp.com/user/${email}`,
         headers: {
           'content-type': 'application/json',
         },

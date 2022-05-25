@@ -30,15 +30,18 @@ const AddBlog = () => {
     <div>
       <h2 className="text-2xl mx-12">Create your own blog</h2>
       <form className="border m-8 " onSubmit={handleSubmit(onSubmit)}>
-        <div class="card w-96 bg-base-100 shadow-xl">
-          <div class="card-body">
-            <div class="col-span-6">
-              <label class="block mb-1 text-sm text-gray-600" for="email">
+        <div className="card w-96 bg-base-100 shadow-xl">
+          <div className="card-body">
+            <div className="col-span-6">
+              <label
+                className="block mb-1 text-sm text-gray-600"
+                htmlFor="email"
+              >
                 Blog Title
               </label>
 
               <input
-                class="rounded-lg shadow-sm border w-full text-sm p-2.5"
+                className="rounded-lg shadow-sm border w-full text-sm p-2.5"
                 type="text"
                 placeholder="Type your blog title"
                 autoComplete="off"
@@ -57,13 +60,16 @@ const AddBlog = () => {
                 )}
               </label>
             </div>
-            <div class="col-span-6">
-              <label class="block mb-1 text-sm text-gray-600" for="email">
+            <div className="col-span-6">
+              <label
+                className="block mb-1 text-sm text-gray-600"
+                htmlFor="email"
+              >
                 Image URL
               </label>
 
               <input
-                class="rounded-lg shadow-sm border w-full text-sm p-2.5"
+                className="rounded-lg shadow-sm border w-full text-sm p-2.5"
                 type="text"
                 placeholder="Type here your profession"
                 autoComplete="off"
@@ -83,12 +89,15 @@ const AddBlog = () => {
               </label>
             </div>
 
-            <div class="col-span-6">
-              <label class="block mb-1 text-sm text-gray-600" for="email">
+            <div className="col-span-6">
+              <label
+                className="block mb-1 text-sm text-gray-600"
+                htmlFor="email"
+              >
                 Blog Body
               </label>
               <textarea
-                class="textarea w-full border"
+                className="textarea w-full border"
                 type="text"
                 placeholder="Write your blog"
                 autoComplete="off"

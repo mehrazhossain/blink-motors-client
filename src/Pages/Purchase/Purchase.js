@@ -68,12 +68,12 @@ const Purchase = () => {
 
   return (
     <section className="mx-12">
-      <Link to={'/'} class="btn btn-accent btn-xs ml-12">
+      <Link to={'/'} className="btn btn-accent btn-xs ml-12">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           version="1.1"
           xmlnsXlink="http://www.w3.org/1999/xlink"
-          xmlnsSvgjs="http://svgjs.com/svgjs"
+          xmlnssvgjs="http://svgjs.com/svgjs"
           width="16px"
           height="16px"
           x="0"
@@ -89,17 +89,17 @@ const Purchase = () => {
               d="m22 11h-17.586l5.293-5.293a1 1 0 1 0 -1.414-1.414l-7 7a1 1 0 0 0 0 1.414l7 7a1 1 0 0 0 1.414-1.414l-5.293-5.293h17.586a1 1 0 0 0 0-2z"
               fill="#ffffff"
               data-original="#000000"
-              class=""
+              className=""
             ></path>
           </g>
         </svg>
         Back
       </Link>
-      <div class="relative mx-auto max-w-screen-2xl">
-        <div class="grid grid-cols-1 md:grid-cols-2">
-          <div class="py-12 bg-gray-50 md:py-24">
-            <div class="max-w-lg px-4 mx-auto lg:px-8">
-              <div class="flex items-center">
+      <div className="relative mx-auto max-w-screen-2xl">
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="py-12 bg-gray-50 md:py-24">
+            <div className="max-w-lg px-4 mx-auto lg:px-8">
+              <div className="flex items-center">
                 {user.photoURL ? (
                   <label
                     tabIndex="0"
@@ -110,14 +110,14 @@ const Purchase = () => {
                     </div>
                   </label>
                 ) : (
-                  <span class="w-10 h-10 bg-blue-900 rounded-full"></span>
+                  <span className="w-10 h-10 bg-blue-900 rounded-full"></span>
                 )}
 
-                <h2 class="ml-4 font-medium">{user.displayName}</h2>
+                <h2 className="ml-4 font-medium">{user.displayName}</h2>
               </div>
 
-              <div class="mt-8">
-                <h1 class="text-2xl font-medium tracking-tight my-4">
+              <div className="mt-8">
+                <h1 className="text-2xl font-medium tracking-tight my-4">
                   Product Information
                 </h1>
                 <p className="font-medium tracking-tight mb-2">
@@ -134,32 +134,34 @@ const Purchase = () => {
                 </small>
               </div>
 
-              <div class="mt-12">
-                <div class="flow-root">
-                  <ul class="-my-4 divide-y divide-gray-200">
-                    <li class="flex items-center justify-between py-4">
-                      <div class="flex items-start">
+              <div className="mt-12">
+                <div className="flow-root">
+                  <ul className="-my-4 divide-y divide-gray-200">
+                    <li className="flex items-center justify-between py-4">
+                      <div className="flex items-start">
                         <img
-                          class="flex-shrink-0 object-cover w-16 h-16 rounded-lg"
+                          className="flex-shrink-0 object-cover w-16 h-16 rounded-lg"
                           src={product.img}
                           alt=""
                         />
 
-                        <div class="ml-4">
-                          <p class="text-sm">{product.title}</p>
+                        <div className="ml-4">
+                          <p className="text-sm">{product.title}</p>
 
-                          <dl class="mt-1 space-y-1 text-xs text-gray-500">
+                          <dl className="mt-1 space-y-1 text-xs text-gray-500">
                             <div>
-                              <dt class="inline">Order Quantity: {input}</dt>
-                              <dd class="inline">
+                              <dt className="inline">
+                                Order Quantity: {input}
+                              </dt>
+                              <dd className="inline">
                                 {/* Order Form  */}
                                 <form
                                   onSubmit={handleOrderForm}
-                                  class="grid grid-cols-6 gap-4"
+                                  className="grid grid-cols-6 gap-4"
                                 >
-                                  <div class="col-span-3">
+                                  <div className="col-span-3">
                                     <input
-                                      class="rounded-lg mt-2 shadow-sm border w-full text-sm p-2"
+                                      className="rounded-lg mt-2 shadow-sm border w-full text-sm p-2"
                                       placeholder="Add order quantity"
                                       onInput={handleInput}
                                       name="orderQuantity"
@@ -174,7 +176,7 @@ const Purchase = () => {
                       </div>
 
                       <div>
-                        <p class="btn btn-sm hover:bg-white">
+                        <p className="btn btn-sm hover:bg-white">
                           ${input * product.price}
                         </p>
                       </div>
@@ -185,20 +187,23 @@ const Purchase = () => {
             </div>
           </div>
 
-          <div class="py-12 bg-white md:py-24">
-            <div class="max-w-lg px-4 mx-auto lg:px-8">
+          <div className="py-12 bg-white md:py-24">
+            <div className="max-w-lg px-4 mx-auto lg:px-8">
               {/* React Hook Place Order Form */}
               <form
                 onSubmit={handleSubmit(onSubmit)}
-                class="grid grid-cols-6 gap-4"
+                className="grid grid-cols-6 gap-4"
               >
-                <div class="col-span-6">
-                  <label class="block mb-1 text-sm text-gray-600" for="email">
+                <div className="col-span-6">
+                  <label
+                    className="block mb-1 text-sm text-gray-600"
+                    htmlFor="email"
+                  >
                     Your Name
                   </label>
 
                   <input
-                    class="rounded-lg shadow-sm border w-full text-sm p-2.5"
+                    className="rounded-lg shadow-sm border w-full text-sm p-2.5"
                     type="text"
                     placeholder="Your name"
                     autoComplete="off"
@@ -219,13 +224,16 @@ const Purchase = () => {
                   </label>
                 </div>
 
-                <div class="col-span-6">
-                  <label class="block mb-1 text-sm text-gray-600" for="email">
+                <div className="col-span-6">
+                  <label
+                    className="block mb-1 text-sm text-gray-600"
+                    htmlFor="email"
+                  >
                     Email
                   </label>
 
                   <input
-                    class="rounded-lg shadow-sm border w-full text-sm p-2.5"
+                    className="rounded-lg shadow-sm border w-full text-sm p-2.5"
                     type="email"
                     placeholder="Enter email"
                     autoComplete="off"
@@ -247,13 +255,16 @@ const Purchase = () => {
                   </label>
                 </div>
 
-                <div class="col-span-6">
-                  <label class="block mb-1 text-sm text-gray-600" for="phone">
+                <div className="col-span-6">
+                  <label
+                    className="block mb-1 text-sm text-gray-600"
+                    htmlFor="phone"
+                  >
                     Phone
                   </label>
 
                   <input
-                    class="rounded-lg shadow-sm border w-full text-sm p-2.5"
+                    className="rounded-lg shadow-sm border w-full text-sm p-2.5"
                     type="tel"
                     placeholder="Provide a valid phone number"
                     id="phone"
@@ -281,12 +292,12 @@ const Purchase = () => {
                     )}
                   </label>
                 </div>
-                <fieldset class="col-span-6">
-                  <legend class="block mb-1 text-sm text-gray-600">
+                <fieldset className="col-span-6">
+                  <legend className="block mb-1 text-sm text-gray-600">
                     Billing Address
                   </legend>
                   <input
-                    class="rounded-lg shadow-sm border w-full text-sm p-2.5"
+                    className="rounded-lg shadow-sm border w-full text-sm p-2.5"
                     type="text"
                     placeholder="Your address"
                     {...register('address', {
@@ -305,10 +316,10 @@ const Purchase = () => {
                   </label>
                 </fieldset>
 
-                <div class="col-span-6">
+                <div className="col-span-6">
                   {input < product.minOrderQty || input > product.stock || (
                     <button
-                      class="rounded-lg bg-black text-sm p-2.5 text-white w-full block"
+                      className="rounded-lg bg-black text-sm p-2.5 text-white w-full block"
                       type="submit"
                     >
                       Order Now

@@ -20,9 +20,9 @@ const MyOrdersRow = ({ order, index, setDeleteOrder }) => {
       )}
       <td>
         <label
-          for="delete-modal"
+          htmlFor="delete-modal"
           onClick={() => setDeleteOrder(order._id)}
-          class="btn hover:bg-error bg-error btn-sm text-gray-800 text-sm"
+          className="btn hover:bg-error bg-error btn-sm text-gray-800 text-sm"
         >
           Delete
         </label>
