@@ -52,21 +52,16 @@ const Purchase = () => {
       orderQuantity: input,
       payableAmount: amount,
       address: data.address,
-      status: 'pending',
-      paymentStatus: 'unpaid',
       product: product,
+      productId: id,
     };
-
-    console.log(order);
 
     // send to database
     if (input !== 0) {
-      request({ url: '/order', method: 'post', data: { order } }).then(
-        (res) => {
-          toast.success('Order Successfully submitted');
-          reset();
-        }
-      );
+      request({ url: '/order', method: 'post', data: order }).then((res) => {
+        toast.success('Order Successfully submitted');
+        reset();
+      });
     }
     navigate('/');
   };

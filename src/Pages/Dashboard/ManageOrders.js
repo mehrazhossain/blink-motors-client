@@ -1,18 +1,30 @@
 import React from 'react';
 import { useQuery } from 'react-query';
+import { toast } from 'react-toastify';
 import { request } from '../../utils/axios-utils';
 import Loader from '../Shared/Loader';
 
 const ManageOrders = () => {
-  const { data: orders, isLoading } = useQuery('orders', () =>
+  const {
+    data: orders,
+    isLoading,
+    refetch,
+  } = useQuery('orders', () =>
     request({ url: '/order' }).then((res) => res.data)
   );
+
   if (isLoading) {
     return <Loader />;
   }
 
-  const handleMakeConfirmBtn = () => {
-    console.log('button clicked');
+  const handleMakeConfirmBtn = (id) => {
+    request({ url: `/order/admin/${id}`, method: 'put' }).then((data) => {
+      if (data.data.modifiedCount > 0) {
+        refetch();
+      }
+    });
+
+    toast.success('Order confirmed by admin');
   };
 
   return (
@@ -23,10 +35,9 @@ const ManageOrders = () => {
             <th></th>
             <th>User</th>
             <th>Product Name</th>
-            <th>Available Stock</th>
             <th>Ordered</th>
             <th>Status</th>
-            <th>Payment</th>
+            <th>Payment Status</th>
             <th>isConfirmed</th>
           </tr>
         </thead>
@@ -34,19 +45,30 @@ const ManageOrders = () => {
           {orders.map((order, index) => (
             <tr key={order._id}>
               <th>{index + 1}</th>
-              <td>{order.order.email}</td>
-              <td>{order.order.product.title}</td>
-              <td>{order.order.product.stock}</td>
-              <td>{order.order.orderQuantity}</td>
-              <td>{order.order.status}</td>
-              <td>{order.order.paymentStatus}</td>
+              <td>{order.email}</td>
+              <td>{order.product.title}</td>
+              <td>{order.orderQuantity}</td>
+              {order.status ? (
+                <td className="text-success">{order.status}</td>
+              ) : (
+                <td className="text-error">pending</td>
+              )}
+              {order.payment ? (
+                <td className="text-success">{order.payment}</td>
+              ) : (
+                <td className="text-error">Not Paid</td>
+              )}
               <td>
-                <button
-                  onClick={handleMakeConfirmBtn}
-                  class="btn btn-success btn-xs"
-                >
-                  Make Confirm
-                </button>
+                {order.status ? (
+                  'true'
+                ) : (
+                  <button
+                    onClick={() => handleMakeConfirmBtn(order._id)}
+                    class="btn btn-success btn-xs"
+                  >
+                    Make Confirm
+                  </button>
+                )}
               </td>
             </tr>
           ))}

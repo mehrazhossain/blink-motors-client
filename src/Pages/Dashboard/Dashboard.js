@@ -17,7 +17,7 @@ const Dashboard = () => {
             Admin Dashboard
           </h1>
         ) : (
-          <h1 className="text-2xl text-indigo-700 text-center font-extrabold">
+          <h1 className="text-2xl text-indigo-700 text-center font-extrabold my-5">
             Dashboard of {user.displayName.split(' ')[0]}
           </h1>
         )}
