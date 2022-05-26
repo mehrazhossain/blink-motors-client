@@ -16,13 +16,16 @@ const ManageProducts = () => {
   }
   return (
     <div class="overflow-x-auto w-full">
+      <div className="text-2xl mx-12 mb-4 font-semibold text-gray-600">
+        All Product List
+      </div>
       <table class="table w-full">
         <thead>
           <tr>
             <th></th>
             <th>Name</th>
             <th>Available Stock</th>
-            <th>Action</th>
+            <th>Remove</th>
             <th></th>
           </tr>
         </thead>
