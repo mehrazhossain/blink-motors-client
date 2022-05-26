@@ -1,22 +1,15 @@
 import React from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import avatar from '../../assets/images/default avatar.jpg';
-import auth from '../../firebase.init';
-import Loader from '../Shared/Loader';
+import quote from '../../assets/images/quote.png';
 
 const Review = ({ review }) => {
-  const [user, loading] = useAuthState(auth);
   const reviewRatings = parseInt(review.ratings);
 
-  if (loading) {
-    return <Loader />;
-  }
   return (
     <div>
       <img
-        src={user?.photoURL ? user?.photoURL : avatar}
+        src={quote}
         alt=""
-        className="object-cover w-24 h-24 mx-auto rounded-full shadow-xl"
+        className="object-cover w-20 h-20 mx-auto rounded-full"
       />
 
       <blockquote className="flex flex-col justify-between p-12 -mt-6 text-center rounded-lg shadow-xl">
