@@ -20,6 +20,7 @@ import ManageProducts from './Pages/Dashboard/ManageProducts';
 import ManageOrders from './Pages/Dashboard/ManageOrders';
 import AddBlog from './Pages/Dashboard/AddBlog';
 import Blogs from './Pages/Blog/Blogs';
+import Portfolio from './Pages/Portfolio/Portfolio';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
       <Navbar></Navbar>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/blog" element={<Blogs />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
