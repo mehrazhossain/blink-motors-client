@@ -8,7 +8,6 @@ const ManageUsers = () => {
   const {
     data: users,
     isLoading,
-    error,
     refetch,
   } = useQuery('users', () =>
     request({ url: '/user' }).then((res) => res.data)
@@ -32,7 +31,9 @@ const ManageUsers = () => {
 
   return (
     <div>
-      <h2>All Users: {users.length}</h2>
+      <div className="text-2xl mx-12 mb-4 font-semibold text-gray-600">
+        Manage all Users
+      </div>
       <div className="overflow-x-auto">
         <table className="table w-full">
           <thead>

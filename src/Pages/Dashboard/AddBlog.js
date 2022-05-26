@@ -28,7 +28,9 @@ const AddBlog = () => {
 
   return (
     <div>
-      <h2 className="text-2xl mx-12">Create your own blog</h2>
+      <div className="text-2xl mx-12 mb-4 font-semibold text-gray-600">
+        Add a New Blog
+      </div>
       <form className="border m-8 " onSubmit={handleSubmit(onSubmit)}>
         <div className="card w-96 bg-base-100 shadow-xl">
           <div className="card-body">

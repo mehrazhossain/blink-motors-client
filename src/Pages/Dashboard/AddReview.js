@@ -39,10 +39,10 @@ const AddReview = () => {
 
   return (
     <div>
-      <h2 className="text-2xl">
+      <div className="text-2xl mx-12 mb-4 font-semibold text-gray-600">
         Hello {user.displayName}, Please write a review for{' '}
-        <span className="font-semibold">Blink Motors</span>
-      </h2>
+        <span className="text-gray-800">Blink Motors</span>
+      </div>
       <form className="border m-8 " onSubmit={handleSubmit(onSubmit)}>
         <div className="card w-96 bg-base-100 shadow-xl">
           <div className="card-body">

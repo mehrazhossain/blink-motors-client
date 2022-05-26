@@ -17,7 +17,7 @@ const ManageProducts = () => {
   return (
     <div class="overflow-x-auto w-full">
       <div className="text-2xl mx-12 mb-4 font-semibold text-gray-600">
-        All Product List
+        Manage all Products
       </div>
       <table class="table w-full">
         <thead>

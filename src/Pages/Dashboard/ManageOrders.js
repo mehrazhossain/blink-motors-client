@@ -29,6 +29,9 @@ const ManageOrders = () => {
 
   return (
     <div className="overflow-x-auto">
+      <div className="text-2xl mx-12 mb-4 font-semibold text-gray-600">
+        Manage All orders
+      </div>
       <table className="table w-full">
         <thead>
           <tr>

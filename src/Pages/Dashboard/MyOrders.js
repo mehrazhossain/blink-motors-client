@@ -25,6 +25,9 @@ const MyOrders = () => {
 
   return (
     <div className="overflow-x-auto">
+      <div className="text-2xl mx-12 mb-4 font-semibold text-gray-600">
+        Order list of <span className="text-gray-800">{user.displayName}</span>
+      </div>
       <table className="table w-full">
         <thead>
           <tr>
