@@ -2,9 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Product = ({ product }) => {
-  const id = product._id;
-  const { title, description, price, stock, minOrderQty, img } =
-    product.product;
+  const { _id, title, description, price, stock, minOrderQty, img } = product;
 
   return (
     <div
@@ -13,12 +11,12 @@ const Product = ({ product }) => {
     "
     >
       <figure>
-        <img src={img} alt="Shoes" />
+        <img style={{ height: '220px' }} src={img} alt="Shoes" />
       </figure>
       <div className="card-body">
         <h2 className="card-title">{title}</h2>
         <p className="text-success font-semibold">Price: {price}$</p>
-        <p>{description.slice(0, 48)}...</p>
+        <p>{description?.slice(0, 48)}...</p>
         <p>
           <span className="text-success font-semibold">Available stock:</span>{' '}
           {stock} Pieces
@@ -26,7 +24,10 @@ const Product = ({ product }) => {
         <small className="text-error">Min Order: {minOrderQty} Pieces</small>
 
         <div className="card-actions justify-center">
-          <Link to={`/purchase/${id}`} className="mx-auto text-primary text-xl">
+          <Link
+            to={`/purchase/${_id}`}
+            className="mx-auto text-primary text-xl"
+          >
             Buy Now
           </Link>
         </div>

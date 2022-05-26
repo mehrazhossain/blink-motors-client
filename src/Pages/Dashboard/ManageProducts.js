@@ -1,9 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useQuery } from 'react-query';
+import { request } from '../../utils/axios-utils';
+import Loader from '../Shared/Loader';
+import ManageProductRow from './ManageProductRow';
+import ProductDeleteModal from './ProductDeleteModal';
 
 const ManageProducts = () => {
+  const [productDeleteConfirmation, setProductDeleteConfirmation] =
+    useState(null);
+  const { data: products, isLoading } = useQuery('products', () =>
+    request({ url: '/product' }).then((res) => res.data)
+  );
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
-    <div>
-      <h2>this manage products page</h2>
+    <div class="overflow-x-auto w-full">
+      <table class="table w-full">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Available Stock</th>
+            <th>Action</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {products.map((product, index) => (
+            <ManageProductRow
+              setProductDeleteConfirmation={setProductDeleteConfirmation}
+              product={product}
+              index={index}
+            />
+          ))}
+        </tbody>
+        {productDeleteConfirmation && <ProductDeleteModal></ProductDeleteModal>}
+      </table>
     </div>
   );
 };

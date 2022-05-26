@@ -22,7 +22,7 @@ const Purchase = () => {
   } = useForm();
 
   const { data: product, isLoading } = useQuery('product', () =>
-    request({ url: `/product/${id}` }).then((res) => res.data.product)
+    request({ url: `/product/${id}` }).then((res) => res.data)
   );
 
   // handle Loading

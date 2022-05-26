@@ -35,7 +35,7 @@ const AddProduct = () => {
             img: img,
           };
           // send to your database
-          request({ url: '/product', method: 'post', data: { product } }).then(
+          request({ url: '/product', method: 'post', data: product }).then(
             (res) => {
               toast.success('Product added successfully');
               reset();
@@ -149,7 +149,7 @@ const AddProduct = () => {
           </label>
           <input
             type="number"
-            placeholder="Add initial stock value"
+            placeholder="Set minimum order limit"
             {...register('minOrderQty', {
               required: {
                 value: true,
