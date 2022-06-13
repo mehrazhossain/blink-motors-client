@@ -36,7 +36,7 @@ const Navbar = () => {
       {user ? (
         <div className="dropdown lg:dropdown-end dropdown-start">
           <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
+            <div className="w-10 rounded-full ring ring-primary">
               <img src={user.photoURL || avatar} alt="login user profile" />
             </div>
           </label>
@@ -64,7 +64,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar">
+    <div className="navbar sticky top-0 z-40 bg-white drop-shadow-lg">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex="0" className="btn btn-ghost lg:hidden">
