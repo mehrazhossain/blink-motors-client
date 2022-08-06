@@ -5,24 +5,23 @@ import Loader from '../Shared/Loader';
 import Blog from './Blog';
 
 const Blogs = () => {
-  const { data: blogs, isLoading } = useQuery('blogs', () =>
-    request({ url: '/user/blog' }).then((res) => res.data)
-  );
+  // const { data: blogs, isLoading } = useQuery('blogs', () =>
+  //   request({ url: '/user/blog' }).then((res) => res.data)
+  // );
 
-  if (isLoading) {
-    return <Loader />;
-  }
+  // if (isLoading) {
+  //   return <Loader />;
+  // }
   return (
-    <div className="mx-12 mt-12">
-      <div className="text text-indigo-700 text-3xl font-bold">
-        <span className="block text-center">Read our latest blog</span>
+    <section className="flex items-center h-full p-16 bg-gray-50 text-gray-800">
+      <div className="container flex flex-col items-center justify-center px-5 mx-auto my-8">
+        <div className="max-w-md text-center">
+          <h2 className="mb-8 font-extrabold text-6xl text-primary">
+            Coming Soon!
+          </h2>
+        </div>
       </div>
-      <div className="grid grid-cols md:grid-cols lg:grid-cols gap-5">
-        {blogs.map((blog) => (
-          <Blog key={blog._id} blog={blog} />
-        ))}
-      </div>
-    </div>
+    </section>
   );
 };
 

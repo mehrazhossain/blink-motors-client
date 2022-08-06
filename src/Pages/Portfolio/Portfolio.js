@@ -1,82 +1,44 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Portfolio = () => {
   return (
-    <div class="hero w-full my-12">
-      <div class="hero-content flex-col lg:flex-row">
-        <div class="card w-96 bg-base-100 shadow-xl">
-          <div class="card-body">
-            <h2 class="card-title">Personal Information</h2>
-            <p>Name: Mehraz Hossain</p>
-            <p>Email: mehrazhossain54@gmail.com</p>
-            <p>Phone: +88 01706-536039</p>
-            <p>
-              Studies: BBA(Hons) at Government Bangla College under of
-              University of Dhaka
-            </p>
-            <p>Lives in: Dhaka, Bangladesh.</p>
-          </div>
-        </div>
-        <div class="card w-96 bg-base-100">
-          <div class="card-body">
-            <h2 class="card-title">Developmental Skills</h2>
-            <p>Full stack web developer.</p>
-            <h2 class="text-xl">
-              Technologies
-              <span class="badge badge-lg">skills</span>
-            </h2>
-            <div>
-              <h3 class="text-lg">HTML,</h3>
-              <h3 class="text-lg">CSS,</h3>
-              <h3 class="text-lg">Bootstrap,</h3>
-              <h3 class="text-lg">Tailwind CSS,</h3>
-              <h3 class="text-lg">JavaScript,</h3>
-              <h3 class="text-lg">ES6,</h3>
-              <h3 class="text-lg">ReactJS,</h3>
-              <h3 class="text-lg">NodeJS,</h3>
-              <h3 class="text-lg">ExpressJs,</h3>
-              <h3 class="text-lg">MongoDB etc.</h3>
-            </div>
-            <div>
-              <h2 class="text-xl">
-                Recent work
-                <span class="badge badge-lg">projects</span>
-              </h2>
-              <p>
-                <a
-                  target={'_blank'}
-                  rel="noreferrer"
-                  href="https://tryinventory-4d242.web.app/"
-                  className="text-indigo-600"
-                >
-                  1. Inventory Management Application
-                </a>
-              </p>
-              <p>
-                <a
-                  target={'_blank'}
-                  rel="noreferrer"
-                  href="https://blink-motors.web.app/"
-                  className="text-indigo-600"
-                >
-                  2. Manufacturer website
-                </a>
-              </p>
-              <p>
-                <a
-                  target={'_blank'}
-                  rel="noreferrer"
-                  href="https://rekindle-16ebd.web.app/"
-                  className="text-indigo-600"
-                >
-                  3. Independent Service Provider website
-                </a>
-              </p>
-            </div>
-          </div>
-        </div>
+    <section className="flex items-center h-full sm:p-16 bg-gray-50 text-gray-800">
+      <div className="container flex flex-col items-center justify-center px-5 mx-auto my-8 space-y-8 text-center sm:max-w-md">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+          className="w-40 h-40 text-gray-400"
+        >
+          <path
+            fill="currentColor"
+            d="M256,16C123.452,16,16,123.452,16,256S123.452,496,256,496,496,388.548,496,256,388.548,16,256,16ZM403.078,403.078a207.253,207.253,0,1,1,44.589-66.125A207.332,207.332,0,0,1,403.078,403.078Z"
+          ></path>
+          <rect
+            width="176"
+            height="32"
+            x="168"
+            y="320"
+            fill="currentColor"
+          ></rect>
+          <polygon
+            fill="currentColor"
+            points="210.63 228.042 186.588 206.671 207.958 182.63 184.042 161.37 162.671 185.412 138.63 164.042 117.37 187.958 141.412 209.329 120.042 233.37 143.958 254.63 165.329 230.588 189.37 251.958 210.63 228.042"
+          ></polygon>
+          <polygon
+            fill="currentColor"
+            points="383.958 182.63 360.042 161.37 338.671 185.412 314.63 164.042 293.37 187.958 317.412 209.329 296.042 233.37 319.958 254.63 341.329 230.588 365.37 251.958 386.63 228.042 362.588 206.671 383.958 182.63"
+          ></polygon>
+        </svg>
+        <p className="text-3xl">This Page is Temporarily Unavailable</p>
+        <Link
+          to={'/'}
+          className="px-8 py-3 font-semibold rounded bg-secondary text-gray-50"
+        >
+          Back to homepage
+        </Link>
       </div>
-    </div>
+    </section>
   );
 };
 
