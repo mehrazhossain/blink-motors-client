@@ -7,7 +7,6 @@ import avatar from '../../assets/images/default avatar.png';
 
 const Navbar = () => {
   const [user] = useAuthState(auth);
-
   // Handle User Logout
   const handleLogout = () => {
     signOut(auth);
@@ -37,7 +36,7 @@ const Navbar = () => {
         <div className="dropdown lg:dropdown-end dropdown-start">
           <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
             <div className="w-10 rounded-full ring ring-primary">
-              <img src={user.photoURL || avatar} alt="login user profile" />
+              <img src={user?.photoURL || avatar} alt="login user profile" />
             </div>
           </label>
           <ul
