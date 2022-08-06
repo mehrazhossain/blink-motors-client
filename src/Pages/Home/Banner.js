@@ -6,7 +6,7 @@ const Banner = () => {
   return (
     <section className="relative bg-neural">
       <img
-        className="absolute inset-0 object-[75%] sm:object-[25%] object-cover w-full h-4/5 opacity-25 sm:opacity-100"
+        className="absolute inset-0 object-[75%] sm:object-[25%] object-cover w-full h-4/5"
         src={banner}
         alt="Couple on a bike"
       />
